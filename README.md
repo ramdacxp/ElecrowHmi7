@@ -27,7 +27,8 @@ https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32
 
 In the `Library Manger` on the left side, search for the following libraries and install them:
 
-* `LovyanGFX` (by lovyan03; current version: 1.1.12)
+* `LovyanGFX` (Display, by lovyan03, v1.1.12)
+* `TAMC_GT911` (Touch Panel, by TAMC, v1.02)
 
 ## Connect and upload code
 
