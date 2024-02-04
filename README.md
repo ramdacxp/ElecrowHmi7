@@ -17,13 +17,16 @@ All code is based on the sample programs provided in the [Elecrow Wiki](https://
   git clone https://github.com/ramdacxp/ElecrowHmi7.git
   ```
 
-## One-Time Setup
+## One-time setup
 
 In the Arduino IDE add **support for generic ESP32 boards** in the `File > Preferences` dialog. Add the following line to the `Additional board manager URLs` field:
 
 ```text
 https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
 ```
+
+Build can take some time.
+If you like to see what's going on, enable `show verbose output during compile`.
 
 In the `Library Manger` on the left side, search for the following libraries and install them:
 
