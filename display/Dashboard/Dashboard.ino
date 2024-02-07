@@ -26,8 +26,8 @@
 // The instance of the LCD display
 LGFX lcd;
 Touchpad tp;
-Button b1(lcd, 50, 50, "Test 1");
-Button b2(lcd, 300, 50, "Backlight");
+Button b1(lcd, 20, 70, "Test 1");
+Button b2(lcd, 300, 70, "Backlight");
 
 void setup() {
   Serial.begin(9600);
@@ -47,6 +47,7 @@ void setup() {
   b2.back = TFT_OLIVE;
 
   drawDashboard();
+  fontTest();
 }
 
 void loop() {
@@ -71,9 +72,41 @@ void loop() {
 
 void drawDashboard() {
   lcd.fillScreen(TFT_BLACK);
-  lcd.setTextSize(2);
-  lcd.setCursor(10, 10);
-  lcd.printf("Dashboard Demo");
+
+  lcd.setFont(&fonts::AsciiFont24x48);
+  lcd.drawString("Dashboard Demo", 20, 10);
+
   b1.draw();
   b2.draw();
+}
+
+void fontTest() {
+  lcd.setTextSize(1);
+  lcd.setTextColor(TFT_YELLOW, TFT_BLACK);
+
+  lcd.setFont(&fonts::Font4);
+  lcd.drawString("Font4", 10, 200);
+
+  lcd.setFont(&fonts::Font6);
+  lcd.drawString("6 1234567890", 10, 230);
+
+  lcd.setFont(&fonts::Font7);
+  lcd.drawString("7 1234567890", 10, 270);
+
+  lcd.setFont(&fonts::Font8);
+  lcd.drawString("8 1234567890", 10, 320);
+
+  lcd.setFont(&fonts::AsciiFont24x48);
+  lcd.drawString("AsciiFont24x48", 10, 420);
+
+  // ---
+
+  lcd.setFont(&fonts::Font0);
+  lcd.drawString("Font0", 400, 200);
+
+  lcd.setFont(&fonts::Font2);
+  lcd.drawString("Font2", 400, 240);
+
+  lcd.setFont(&fonts::Font8x8C64);
+  lcd.drawString("Font8x8C64", 400, 280);
 }
