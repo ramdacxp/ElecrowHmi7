@@ -50,7 +50,7 @@ public:
   void init() {
     Wire.begin(TP_DEFAULT_SDA, TP_DEFAULT_SCL);
     _ts.begin();
-    _ts.setRotation(ROTATION_NORMAL);
+    _ts.setRotation(ROTATION_INVERTED); // ROTATION_NORMAL
     _active = false;
   }
 
@@ -71,9 +71,11 @@ public:
         return UpdateResult::Reset;
       }
 
-      _point = _ts.points[0];
-      _active = true;
-      return UpdateResult::Pressed;
+      if ((_point != _ts.points[0]) || (_active == false)) {
+        _point = _ts.points[0];
+        _active = true;
+        return UpdateResult::Pressed;
+      }
     } else if (_active == true) {
       _active = false;
       return UpdateResult::Released;

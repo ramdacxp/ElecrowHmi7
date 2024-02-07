@@ -17,8 +17,7 @@
 
 Touchpad tp;
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
   Serial.println();
   Serial.println("Touch Logger Sample V2");
@@ -27,23 +26,19 @@ void setup()
   tp.init();
 }
 
-void loop()
-{
+void loop() {
   delay(10);
 
-  switch (tp.update())
-  {
-  case Touchpad::UpdateResult::Pressed:
-    Serial.print("PRESSED");
-    break;
-  case Touchpad::UpdateResult::Released:
-    Serial.print("RELEASED");
-    break;
-  case Touchpad::UpdateResult::Reset:
-    Serial.print("RESET");
-    break;
+  switch (tp.update()) {
+    case Touchpad::UpdateResult::Pressed:
+      Serial.printf("PRESSED (%d:%d) - %d\n", tp.x(), tp.y(), tp.active());
+      break;
+    case Touchpad::UpdateResult::Released:
+      Serial.printf("RELEASED (%d:%d) - %d\n", tp.x(), tp.y(), tp.active());
+      break;
+    case Touchpad::UpdateResult::Reset:
+      Serial.println("RESET");
+      break;
   }
 
-  Serial.printf(" (%d:%d) - %d", tp.x(), tp.y(), tp.active());
-  Serial.println();
 }
